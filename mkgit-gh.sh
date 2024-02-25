@@ -11,6 +11,10 @@ if ! command -v gh &> /dev/null; then
   exit 1
 fi
 
+# Checking Auth Status
+
+LUSER="$(gh auth status | awk '{print$7}' | head -n 2 | tail -n 1)"
+
 # Get user input:
 read -p "Enter desired repository name (or leave empty for auto-naming): " repo_name
 read -p "Enter repository description (optional): " description
@@ -60,7 +64,7 @@ gh repo create \
   --description "$description" \
   || exit 1
 
-git remote add origin "https://github.com/$USER/$repo_name.git" || exit 1
+git remote add origin "https://github.com/$LUSER/$repo_name.git" || exit 1
 git push origin main || exit 1
 
 # Additional setup based on options:
@@ -70,4 +74,4 @@ if [[ -n "$license_file" ]]; then
   git add "$license_file" && git commit -m "Added LICENSE file"
 fi
 
-echo "Successfully created and pushed repository: https://github.com/$USER/$repo_name"
+echo "Successfully created and pushed repository: https://github.com/$LUSER/$repo_name"
