@@ -56,7 +56,7 @@ git commit -m "Initial commit" || exit 1
 # Use GitHub CLI to create remote repository and push initial commit
 gh repo create \
   --"$visibility" \
-  --name "$repo_name" \
+  "$repo_name" \
   --description "$description" \
   || exit 1
 
