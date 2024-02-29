@@ -1,6 +1,4 @@
-# mkgit-gh
-
-## Instructions (mkgit-gh.sh)
+# Instructions
 
 1. Set Github Personal Access Token when prompted and the script will handle everything on its own.
 
